@@ -141,11 +141,19 @@ public class Repostaje {
 
 		Repostaje repostajeNormal = new Repostaje();
 		
-		if(baseDatosNormal.size()==0)
-			repostajeNormal.SetIdentidicador(1);
-		else {
-			repostajeNormal.SetIdentidicador(baseDatosNormal.size()+1);;
+		int id=1;
+		boolean esIdUnico=false;
+		while (!esIdUnico) {
+		    esIdUnico = true;
+		    for (Repostaje registro : baseDatosNormal) {
+		        if (registro.getIdentidicador() == id) {
+		            esIdUnico = false;
+		            id++;
+		            break;
+		        }
+		    }
 		}
+		repostajeNormal.SetIdentidicador(id);
 		repostajeNormal.setFechaActual(fechaRepostaje);
 		repostajeNormal.setLitrosRepostados(litrosArepostar);
 		repostajeNormal.setImporteTotal(importe);
@@ -194,11 +202,20 @@ public class Repostaje {
 		
 		System.out.println("\nGracias, repostaje finalizado.");
 		Repostaje repostajeConFactura = new Repostaje();
-		if(baseDatosFactura.size()==0)
-			repostajeConFactura.SetIdentidicador(1);
-		else {
-			repostajeConFactura.SetIdentidicador(baseDatosFactura.size()+1);;
+		
+		int id=1;
+		boolean esIdUnico=false;
+		while (!esIdUnico) {
+		    esIdUnico = true;
+		    for (Repostaje registro : baseDatosFactura) {
+		        if (registro.getIdentidicador() == id) {
+		            esIdUnico = false;
+		            id++;
+		            break;
+		        }
+		    }
 		}
+		repostajeConFactura.SetIdentidicador(id);		
 		repostajeConFactura.setDniCliente(dniCliente);
 		repostajeConFactura.setImporteTotal(importe);
 		repostajeConFactura.setMatriculaVehiculoCliente(matricula);

@@ -46,6 +46,7 @@ public class Principal {
 						System.err.println("No ha introducido repostaje con factura o normal (f/n)");
 					break;
 				case 5:
+					
 					break;
 				case 6:
 					cerrarMenu=true;
