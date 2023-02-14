@@ -1,16 +1,19 @@
 package gestionGasolinera;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class Principal {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		List<Repostaje>listaBaseDatos = new ArrayList<>();
+		List<Repostaje>baseDatosNormal = new ArrayList<>();
+		List<Repostaje>baseDatosFactura = new ArrayList<>();
+
 		Repostaje reposFactura = new Repostaje();
 		Repostaje reposNormal = new Repostaje();
 
@@ -19,21 +22,32 @@ public class Principal {
 		int opcion;
 		do {
 			mostrarMenu();
-			opcion=scan.nextInt();
 			System.out.println("Introduza la opción deseada: ");
+			opcion=scan.nextInt();
 			System.out.println("[INFO] - Has seleccionado la opcion " + opcion);
 
 			switch(opcion) {
 				case 1:
-					listaBaseDatos=reposNormal.repostajeNormal(listaBaseDatos);
+					baseDatosNormal=reposNormal.repostajeNormal(baseDatosNormal);
 					break;
 				case 2:
-					listaBaseDatos=reposFactura.repostajeFactura(listaBaseDatos);
+					baseDatosFactura=reposFactura.repostajeFactura(baseDatosFactura);
 					break;
 				case 3:
-					reposFactura.verRepostajes(listaBaseDatos);
+					reposFactura.verRepostajes(baseDatosNormal,baseDatosFactura);
 					break;
 				case 4:
+					String eliminarRepostaje=JOptionPane.showInputDialog("Cual repostaje quiere eliminar normal o con factura (n/f): ");
+					if(eliminarRepostaje.equalsIgnoreCase("n")) 
+						baseDatosNormal = reposNormal.eliminarRepostajeNormal(baseDatosNormal);
+					else if(eliminarRepostaje.equalsIgnoreCase("f")) 
+						baseDatosFactura = reposFactura.eliminarRepostajeFactura(baseDatosNormal);
+					else
+						System.err.println("No ha introducido repostaje con factura o normal (f/n)");
+					break;
+				case 5:
+					break;
+				case 6:
 					cerrarMenu=true;
 					break;
 				default:
@@ -46,9 +60,11 @@ public class Principal {
 	}
 	static void mostrarMenu() {
 		System.out.println("\n1. Repostaje normal");
-		System.out.println("\n2. Repostaje factura");
-		System.out.println("\n3. Ver todos los repostajes");
-		System.out.println("\n4. Salir");
+		System.out.println("2. Repostaje factura");
+		System.out.println("3. Ver todos los repostajes");
+		System.out.println("4. Eliminar los repostajes");
+		System.out.println("5. Modificar un repostaje");
+		System.out.println("6. Salir");
 	}
 
 }
