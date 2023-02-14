@@ -269,7 +269,10 @@ public class Repostaje {
 		}
 		if(!idExiste)
 			System.out.println("El registro con id "+ idAeliminar +" no se encuentra en la base de datos ");
-		baseDatosNormal.remove(contadorPosicion);
+		else {
+			System.out.println("Repostaje elimnado correctamente");
+			baseDatosNormal.remove(contadorPosicion);			
+		}
 		return baseDatosNormal;
 	}
 	public List<Repostaje> eliminarRepostajeFactura (List<Repostaje>baseDatosFactura){
@@ -291,7 +294,11 @@ public class Repostaje {
 		}
 		if(!idExiste)
 			System.out.println("El registro con id "+ idAborrar +" no se encuentra en la base de datos ");
-		baseDatosFactura.remove(contadorPosicion);
+		else {
+			System.out.println("Repostaje elimnado correctamente");
+			baseDatosFactura.remove(contadorPosicion);
+		}
+			
 		
 		return baseDatosFactura;
 	}
