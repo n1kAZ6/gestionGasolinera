@@ -41,12 +41,18 @@ public class Principal {
 					if(eliminarRepostaje.equalsIgnoreCase("n")) 
 						baseDatosNormal = reposNormal.eliminarRepostajeNormal(baseDatosNormal);
 					else if(eliminarRepostaje.equalsIgnoreCase("f")) 
-						baseDatosFactura = reposFactura.eliminarRepostajeFactura(baseDatosNormal);
+						baseDatosFactura = reposFactura.eliminarRepostajeFactura(baseDatosFactura);
 					else
 						System.err.println("No ha introducido repostaje con factura o normal (f/n)");
 					break;
 				case 5:
-					
+					String modificiarRepostaje=JOptionPane.showInputDialog("Cual repostaje quiere modificar normal o con factura (n/f): ");
+					if(modificiarRepostaje.equalsIgnoreCase("n")) 
+						baseDatosNormal = reposNormal.modificarRepostaje(baseDatosNormal);
+					else if(modificiarRepostaje.equalsIgnoreCase("f")) 
+						baseDatosFactura = reposFactura.modificarRepostaje(baseDatosFactura);
+					else
+						System.err.println("No ha introducido repostaje con factura o normal (f/n)");
 					break;
 				case 6:
 					cerrarMenu=true;
